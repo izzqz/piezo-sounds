@@ -17,11 +17,13 @@ jobs:
         with:
           submodules: true
 
+      - uses: extractions/setup-just@v4
+
       - name: Install deps
         run: |
           export DEBIAN_FRONTEND=noninteractive
           sudo -E apt-get update -qq
-          sudo -E apt-get install -y -qq just ffmpeg zip
+          sudo -E apt-get install -y -qq ffmpeg zip
 
       - name: Build
         run: just build
