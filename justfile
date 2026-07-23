@@ -2,17 +2,23 @@
 
 CUBIC_BETA := "0.3"
 
+ffmpeg_params := "-hide_banner -loglevel warning -ch_layout mono"
+
 _default:
     @just --list
+
+build: prepare generate convert
 
 prepare:
     git submodule update --init
     @just --justfile beep2wav/justfile build
     mkdir -p out/wav
     mkdir -p out/ogg
+    mkdir -p out/opus
+    mkdir -p out/mp3
 
 put name *command:
-    ./beep2wav/beep2wav -o ./piezo_sounds/wav/{{ name }}.wav --cubic-beta {{ CUBIC_BETA }} -- {{ command }}
+    ./beep2wav/beep2wav -o ./out/wav/{{ name }}.wav --cubic-beta {{ CUBIC_BETA }} -- {{ command }}
 
 generate: prepare
     just put lookup beep -f 1093 -l 50 -n -f 865 -l 50 -n -f 1093 -l 50 -n -f 1637 -l 100
@@ -41,6 +47,13 @@ generate: prepare
     just put tick beep -f 20000 -l 1
     just put tock beep -f 100 -l 10
 
-build: generate
+convert:
+    # ogg
+    for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -q:a 4 "out/ogg/$(basename "$f" .wav).ogg" -y; done
+    # opus
+    for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libopus -b:a 64k "out/opus/$(basename "$f" .wav).opus" -y; done
+    # mp3
+    for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
 
-
+pack:
+    zip -r piezo_sounds.zip out/
