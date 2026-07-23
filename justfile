@@ -7,7 +7,7 @@ ffmpeg_params := "-hide_banner -loglevel warning -ch_layout mono"
 _default:
     @just --list
 
-build: prepare generate convert
+build: prepare generate convert pack
 
 prepare:
     git submodule update --init
