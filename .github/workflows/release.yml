@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - run: apt install just
+
+      - name: Build
+        run: just build
+
+      - name: Upload piezo_sounds.zip to release
+        run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

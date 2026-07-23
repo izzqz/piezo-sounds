@@ -7,7 +7,8 @@ ffmpeg_params := "-hide_banner -loglevel warning -ch_layout mono"
 _default:
     @just --list
 
-build: prepare generate convert pack
+build: prepare generate convert
+    zip -r piezo_sounds.zip out/
 
 prepare:
     git submodule update --init
@@ -55,5 +56,3 @@ convert:
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
 
-pack:
-    zip -r piezo_sounds.zip out/
