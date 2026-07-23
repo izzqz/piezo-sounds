@@ -9,11 +9,23 @@ ref := env_var_or_default('GITHUB_REF_NAME', env_var_or_default('GITHUB_SHA', 'l
 _default:
     @just --list
 
+# check if deps installed
+precheck:
+    command -v git
+    command -v cc
+    command -v ffmpeg
+    command -v zip
+    ffmpeg -encoders 2>/dev/null | grep -q libopus
+    ffmpeg -encoders 2>/dev/null | grep -q libvorbis
+    ffmpeg -encoders 2>/dev/null | grep -q libmp3lame
+
+# build everything properly
 [working-directory: 'out']
-build: prepare generate convert
+build: precheck prepare generate convert
     echo "piezo sounds {{ref}}" > readme.txt
     zip -r ../piezo_sounds.zip .
 
+# fetch submodule and build tool
 prepare:
     git submodule update --init
     @just --justfile beep2wav/justfile build
@@ -22,9 +34,11 @@ prepare:
     mkdir -p out/opus
     mkdir -p out/mp3
 
+# execute beep2wav with filename
 put name *command:
     ./beep2wav/beep2wav -o ./out/wav/{{ name }}.wav --cubic-beta {{ CUBIC_BETA }} -- {{ command }}
 
+# TODO: extract this as different file
 generate: prepare
     just put lookup beep -f 1093 -l 50 -n -f 865 -l 50 -n -f 1093 -l 50 -n -f 1637 -l 100
     just put done beep -f 2077 -l 80 -n -f 3077 -l 80
@@ -52,6 +66,7 @@ generate: prepare
     just put tick beep -f 20000 -l 1
     just put tock beep -f 100 -l 10
 
+# create ogg opus and mp3 files
 convert:
     # ogg
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -q:a 4 "out/ogg/$(basename "$f" .wav).ogg" -y; done
