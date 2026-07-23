@@ -23,7 +23,7 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           sudo -E apt-get update -qq
-          sudo -E apt-get install -y -qq ffmpeg zip
+          sudo -E apt-get install -y -qq beep ffmpeg zip
 
       - name: Build
         run: just build

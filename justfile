@@ -11,6 +11,7 @@ _default:
 
 # check if deps installed
 precheck:
+    command -v beep
     command -v git
     command -v cc
     command -v ffmpeg
