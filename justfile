@@ -24,7 +24,7 @@ precheck:
 [working-directory: 'out']
 build: precheck prepare generate convert
     echo "piezo sounds {{ref}}" > readme.txt
-    cp -r ../tones ./beep
+    cp -rT ../tones ./beep
     zip -r ../piezo_sounds.zip .
 
 # remove build artifacts
