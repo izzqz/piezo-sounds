@@ -11,12 +11,15 @@ jobs:
   build-and-upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
 
-      - name: Install just
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq just
+      - name: Install deps
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          sudo -E apt-get update -qq
+          sudo -E apt-get install -y -qq just ffmpeg zip
 
       - name: Build
         run: just build
