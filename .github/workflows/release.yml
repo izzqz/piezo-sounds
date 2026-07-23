@@ -15,7 +15,8 @@ jobs:
         with:
           submodules: true
 
-      - run: apt install just
+      - name: Install just
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq just
 
       - name: Build
         run: just build
