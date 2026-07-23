@@ -1,0 +1,2 @@
+#!/bin/sh
+exec beep -f 1000 -l 300 -n -f 1500 -r 4 -l 10 -n -f 2000 -l 80

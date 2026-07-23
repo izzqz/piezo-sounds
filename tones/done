@@ -1,0 +1,2 @@
+#!/bin/sh
+exec beep -f 2077 -l 80 -n -f 3077 -l 80

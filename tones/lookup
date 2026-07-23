@@ -1,0 +1,2 @@
+#!/bin/sh
+exec beep -f 1093 -l 50 -n -f 865 -l 50 -n -f 1093 -l 50 -n -f 1637 -l 100
