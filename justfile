@@ -4,11 +4,15 @@ CUBIC_BETA := "0.3"
 
 ffmpeg_params := "-hide_banner -loglevel warning -ch_layout mono"
 
+ref := env_var_or_default('GITHUB_REF_NAME', env_var_or_default('GITHUB_SHA', 'local'))
+
 _default:
     @just --list
 
+[working-directory: 'out']
 build: prepare generate convert
-    zip -r piezo_sounds.zip out/
+    echo "piezo sounds {{ref}}" > readme.txt
+    zip -r ../piezo_sounds.zip .
 
 prepare:
     git submodule update --init
@@ -55,4 +59,5 @@ convert:
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libopus -b:a 64k "out/opus/$(basename "$f" .wav).opus" -y; done
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
+
 

@@ -6,6 +6,8 @@ on:
 
 permissions:
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   build-and-upload:
@@ -24,7 +26,14 @@ jobs:
       - name: Build
         run: just build
 
-      - name: Upload piezo_sounds.zip to release
-        run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip
+      - name: Attest
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            piezo_sounds.zip
+            out/opus/*.opus
+
+      - name: Upload to release
+        run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip out/opus/*.opus
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
