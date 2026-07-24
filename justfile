@@ -5,6 +5,16 @@ CUBIC_BETA := "0.3"
 ffmpeg_params := "-hide_banner -loglevel warning -ch_layout mono"
 
 ref := env_var_or_default('GITHUB_REF_NAME', env_var_or_default('GITHUB_SHA', 'local'))
+build_date := `date +%d-%m-%Y`
+
+preamble := f'''
+piezo sounds pack
+
+version: {{ref}} at {{build_date}}
+
+---
+
+'''
 
 _default:
     @just --list
@@ -20,10 +30,20 @@ precheck:
     ffmpeg -encoders 2>/dev/null | grep -q libvorbis
     ffmpeg -encoders 2>/dev/null | grep -q libmp3lame
 
+# play all tones
+play:
+    @for tone in tones/*; do \
+        printf '→ %s\n' "$(basename "$tone")"; \
+        ./beep2wav/beep2wav --cubic-beta {{CUBIC_BETA}} -- "$tone" >/dev/null 2>&1; \
+        sleep 0.1; \
+    done
+    @printf 'done.\n'
+
 # build everything properly
 [working-directory: 'out']
 build: precheck prepare generate convert
-    echo "piezo sounds {{ref}}" > readme.txt
+    printf '{{preamble}}\n' > readme.txt
+    cat ../UNLICENSE >> readme.txt
     cp -rT ../tones ./beep
     zip -r ../piezo_sounds.zip .
 
