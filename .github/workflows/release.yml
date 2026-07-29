@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: piezo-sounds
+          name: piezo_sounds
 
       - name: Upload to release
         run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip out/opus/*.opus
