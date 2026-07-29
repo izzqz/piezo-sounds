@@ -74,6 +74,7 @@ convert:
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -q:a 4 "out/ogg/$(basename "$f" .wav).ogg" -y; done
     # opus
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libopus -b:a 64k "out/opus/$(basename "$f" .wav).opus" -y; done
+    cp out/opus/*.opus assets/
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
     # webm (remux opus, no re-encode)
@@ -85,10 +86,10 @@ default_url_prefix := "https://raw.githubusercontent.com/izzqz/piezo-sounds/refs
 table url_prefix=default_url_prefix:
     @printf '<table>\n'
     @printf '<tbody>\n'
-    @shopt -s nullglob; for f in assets/*.webm; do \
-        name="$(basename "$f" .webm)"; \
-        url="{{url_prefix}}/$name.webm"; \
-        printf '  <tr><td>%s</td><td><video controls width="300"><source src="%s" type="video/webm"></video></td></tr>\n' "$name" "$url"; \
+    @shopt -s nullglob; for f in assets/*.opus; do \
+        name="$(basename "$f" .opus)"; \
+        url="{{url_prefix}}/$name.opus"; \
+        printf '  <tr><td>%s</td><td><audio controls><source src="%s" type="audio/ogg"></audio></td></tr>\n' "$name" "$url"; \
     done
     @printf '</tbody>\n'
     @printf '</table>\n'
