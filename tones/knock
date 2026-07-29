@@ -1,0 +1,2 @@
+#!/bin/sh
+exec beep -f 500 -l 15 -d 70 -r 2
