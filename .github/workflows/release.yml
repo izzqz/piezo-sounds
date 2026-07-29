@@ -10,8 +10,7 @@ permissions: {}
 jobs:
   build:
     permissions:
-      contents: read
-      actions: write
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -29,29 +28,8 @@ jobs:
       - name: Build
         run: just precheck build
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: piezo-sounds
-          path: |
-            piezo_sounds.zip
-
-  release:
-    needs: build
-    if: github.event_name == 'release'
-    permissions:
-      contents: write
-      id-token: write
-      attestations: write
-      actions: read
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: piezo-sounds
-
       - name: Upload to release
+        if: github.event_name == 'release'
         run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
