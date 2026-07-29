@@ -3,14 +3,15 @@ name: Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
-permissions:
-  contents: write
-  id-token: write
-  attestations: write
+permissions: {}
 
 jobs:
-  build-and-upload:
+  build:
+    permissions:
+      contents: read
+      actions: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -20,20 +21,36 @@ jobs:
       - uses: extractions/setup-just@v4
 
       - name: Install deps
-        run: |
-          export DEBIAN_FRONTEND=noninteractive
-          sudo -E apt-get update -qq
-          sudo -E apt-get install -y -qq beep ffmpeg zip
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: beep ffmpeg zip
+          version: 1.0
 
       - name: Build
-        run: just build
+        run: just precheck build
 
-      - name: Attest
-        uses: actions/attest@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
         with:
-          subject-path: |
+          name: piezo-sounds
+          path: |
             piezo_sounds.zip
             out/opus/*.opus
+
+  release:
+    needs: build
+    if: github.event_name == 'release'
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      actions: read
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: piezo-sounds
 
       - name: Upload to release
         run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip out/opus/*.opus
