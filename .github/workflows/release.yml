@@ -23,7 +23,7 @@ jobs:
       - name: Install deps
         uses: awalsh128/cache-apt-pkgs-action@v1
         with:
-          packages: beep ffmpeg zip
+          packages: beep ffmpeg zip libopus0 libvorbis0a libvorbisenc2 libmp3lame0
           version: 1.0
 
       - name: Build
