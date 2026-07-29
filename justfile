@@ -12,7 +12,6 @@ piezo sounds pack
 
 version: {{ref}} at {{build_date}}
 
-
 https://github.com/izzqz/piezo-sounds
 
 ---
@@ -80,8 +79,7 @@ convert:
     cp out/opus/*.opus assets/
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
-    # webm (remux opus, no re-encode)
-    for f in out/opus/*.opus; do ffmpeg -i "$f" -c:a copy "assets/$(basename "$f" .opus).webm" -y; done
+
 
 default_url_prefix := "https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/main/assets"
 
