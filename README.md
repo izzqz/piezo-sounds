@@ -2,6 +2,8 @@
 
 this is a bunch of simple sounds from [piezoelectric speaker](https://en.wikipedia.org/wiki/Piezoelectric_speaker) check samples in [itch.io page](https://izzqz.itch.io/piezo-speaker-sound-pack)
 
+<br>
+
 <table>
 <tr>
 <td align="center">
@@ -11,8 +13,6 @@ this is a bunch of simple sounds from [piezoelectric speaker](https://en.wikiped
 </td>
 </tr>
 </table>
-
-<br>
 
 ## How to contribute
 
