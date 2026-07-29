@@ -15,22 +15,25 @@ This is a list of sounds created from [piezoelectric speaker](https://en.wikiped
 
 <br>
 
+
 <table>
 <tbody>
-  <tr><td>alert</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/alert.opus"></audio></td></tr>
-  <tr><td>awake</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/awake.opus"></audio></td></tr>
-  <tr><td>chime</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/chime.opus"></audio></td></tr>
-  <tr><td>denied</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/denied.opus"></audio></td></tr>
-  <tr><td>discord_call</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/discord_call.opus"></audio></td></tr>
-  <tr><td>done</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/done.opus"></audio></td></tr>
-  <tr><td>knock</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/knock.opus"></audio></td></tr>
-  <tr><td>lookup</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/lookup.opus"></audio></td></tr>
-  <tr><td>ping</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ping.opus"></audio></td></tr>
-  <tr><td>pong</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/pong.opus"></audio></td></tr>
-  <tr><td>ringing_high</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ringing_high.opus"></audio></td></tr>
-  <tr><td>ringing_mid</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ringing_mid.opus"></audio></td></tr>
-  <tr><td>tick</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/tick.opus"></audio></td></tr>
-  <tr><td>tock</td><td><audio controls src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/tock.opus"></audio></td></tr>
+  <tr><td>alert</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/alert.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>awake</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/awake.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>chime</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/chime.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>denied</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/denied.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>discord_call</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/discord_call.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>done</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/done.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>knock</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/knock.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>lookup</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/lookup.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>ping</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ping.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>pong</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/pong.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>ringing_high</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ringing_high.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>ringing_mid</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/ringing_mid.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>tick</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/tick.opus" type="audio/ogg"></video></td></tr>
+  <tr><td>tock</td><td><video controls width="300" height="50"><source src="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/dev/assets/tock.opus" type="audio/ogg"></video></td></tr>
 </tbody>
 </table>
+
+
 
