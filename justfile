@@ -84,7 +84,7 @@ table branch=`git branch --show-current`:
     @for f in assets/*.opus; do \
         name="$(basename "$f" .opus)"; \
         url="https://raw.githubusercontent.com/izzqz/piezo-sounds/refs/heads/{{branch}}/assets/$name.opus"; \
-        printf '  <tr><td>%s</td><td><video controls width="300" height="50"><source src="%s" type="audio/ogg"></video></td></tr>\n' "$name" "$url"; \
+        printf '  <tr><td>%s</td><td><audio controls><source src="%s" type="audio/ogg"></audio></td></tr>\n' "$name" "$url"; \
     done
     @printf '</tbody>\n'
     @printf '</table>\n'
