@@ -73,6 +73,7 @@ convert:
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -q:a 4 "out/ogg/$(basename "$f" .wav).ogg" -y; done
     # opus
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libopus -b:a 64k "out/opus/$(basename "$f" .wav).opus" -y; done
+    for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libopus -b:a 64k "assets/$(basename "$f" .wav).opus" -y; done
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
 
