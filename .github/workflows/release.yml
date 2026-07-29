@@ -35,7 +35,6 @@ jobs:
           name: piezo-sounds
           path: |
             piezo_sounds.zip
-            out/opus/*.opus
 
   release:
     needs: build
@@ -53,6 +52,6 @@ jobs:
           name: piezo_sounds
 
       - name: Upload to release
-        run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip out/opus/*.opus
+        run: gh release upload ${{ github.event.release.tag_name }} piezo_sounds.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
