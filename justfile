@@ -76,4 +76,7 @@ convert:
     # mp3
     for f in out/wav/*.wav; do ffmpeg {{ffmpeg_params}} -i "$f" -c:a libmp3lame -q:a 2 "out/mp3/$(basename "$f" .wav).mp3" -y; done
 
-
+new name:
+    printf '#!/bin/sh\nexec beep\n' > "tones/{{name}}"
+    chmod +x "tones/{{name}}"
+    $EDITOR tones/{{name}}
